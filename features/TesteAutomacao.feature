@@ -2,7 +2,9 @@ Feature: Criando usuário dentro do sistema
 
   Scenario: Teste alteração do Título do Scenario
 
-    Given que seja acessado o site "http://webdriveruniversity.com/index.html"
-    When confiro que existe um link com nome "Selenium Webdriver 4 New Features In Detail" e clico nele
-    And for efetuado o cadastro com o nome "Michael" e ultimo nome "Jackson" e o email "michaeljackson@jacksonfive.com"
-    Then e validado a mensagem de criacao de usuario "Usuário Criado com sucesso"
+    Given que acesso o site "https://www.decolar.com/"
+    When clico no botão de Hospedagens
+    And informo destino "Porto Alegre, Rio Grande do Sul, Brasil"
+    And informo data de Entrada e Saída pré-definidas
+    And escolho dois adultos e duas crianças, sendo que uma delas tem "9" anos e a outra "10"
+    Then valido que pesquisa foi realizada com sucesso

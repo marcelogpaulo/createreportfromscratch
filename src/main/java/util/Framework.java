@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.*;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class Framework {
@@ -28,7 +29,7 @@ public class Framework {
     public static WebDriver browserDriver(String url) {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
+        options.setHeadless(false);
         driver = new ChromeDriver(options);
         driver.get(url);
         driver.manage().window().maximize();
@@ -69,7 +70,7 @@ public class Framework {
             if (textStep.contains(typeStep)) {
                 logger.pass(GetStep.gherkin + "<br><font color=Lime>" + Status.PASSED + "</font></br>");
 //                logger.pass("<font color=Lime>" + GetStep.gherkin + "</font>" + "<br><font color=Lime>" + Status.PASSED + "</font></br>");
-                logger.addScreenCaptureFromPath(capture(), "<br><font color=Lime>" + typeStep + " click screenshot</font></br>");
+                logger.addScreenCaptureFromPath(capture(), "<br><font color=darkgreen><b>" + typeStep + "</font></b> <font color=black>click screenshot</font></br>");
             }
         }
     }

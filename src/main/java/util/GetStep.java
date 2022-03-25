@@ -33,7 +33,7 @@ public class GetStep implements ConcurrentEventListener {
             PickleStepTestStep testStep = (PickleStepTestStep) event.getTestStep();
             stepName = testStep.getStep().getText();
             keyGherkin = testStep.getStep().getKeyword();
-            gherkin = keyGherkin + " " + stepName;
+            gherkin = keyGherkin + " " + stepName + System.getProperty("line.separator");
             createFile(gherkin);
         }
     }
@@ -41,7 +41,7 @@ public class GetStep implements ConcurrentEventListener {
     public void createFile(String f) throws IOException {
         FileWriter writer = new FileWriter("file.txt", true);
         writer.write(f);
-        writer.write(System.getProperty("line.separator"));
+//        writer.write(System.getProperty("line.separator"));
         writer.close();
     }
 }

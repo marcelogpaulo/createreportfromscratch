@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import pageObject.HomePage;
 import util.Framework;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TesteAutomacao {
@@ -23,25 +22,43 @@ public class TesteAutomacao {
         scenario = sce;
     }
 
-    @Given("que seja acessado o site {string}")
+    @Given("que acesso o site {string}")
     public void queSejaAcessadoOSiteDeCriacao(String url) throws IOException {
         page = PageFactory.initElements(Framework.browserDriver(url), HomePage.class);
-        page.validarTituloHomePage(scenario, "WebDriverUniversity.com");
+        page.validarTituloHomePage(scenario, "Viaje com a maior agência de viagens online do Brasil | Decolar");
+        page.fecharModalDeInicioDeSessao();
     }
 
-    @When("confiro que existe um link com nome {string} e clico nele")
-    public void confiroQueExisteUmLinkComNomePreDefinidoEClicoNele(String nomeDoCurso) throws IOException {
-        page.clicarNoCursoSeleniumWebdriver4(nomeDoCurso);
+    @When("clico no botão de Hospedagens")
+    public void ClicoNoBotaoDeHospedagens() throws IOException {
+        page.clicarBotaoHospedagens();
     }
 
-    @And("for efetuado o cadastro com o nome {string} e ultimo nome {string} e o email {string}")
-    public void forEfetuadoOCadastroComONomeEUltimoNomeEOEmail(String string, String string2, String string3) {
-
+    @And("informo destino {string}")
+    public void informoDestino(String destino) throws IOException, InterruptedException {
+        page.informarDestino(destino);
     }
 
-    @Then("e validado a mensagem de criacao de usuario {string}")
-    public void eValidadoAMensagemDeCriacaoDeUsuario(String string) {
+    @And("informo data de Entrada e Saída pré-definidas")
+    public void informoDataDeEntradaESaidaPreDefinidas() throws Exception {
+        page.clicarNoCampoDataEntrada();
+        page.informarDataEntradaDiaAtual();
+        page.informarDataSaidaDiaAtualMaisUm();
+        page.clicarBotaoAplicarDatasEscolhidas();
+    }
 
+    @And("escolho dois adultos e duas crianças, sendo que uma delas tem {string} anos e a outra {string}")
+    public void escolhoDoisAdultosEDuasCriançasVariandoSuasIdades(String idadePrimeraCrianca, String idadeSegundaCrianca) throws Exception {
+        page.clicarCampoQuartos();
+        page.informarQuantidadeCriancas();
+        page.informarIdadeDaCrianca(idadePrimeraCrianca, idadeSegundaCrianca);
+        page.clicarBotaoAplicarQuantidadePessoas();
+        page.clicarBotaoBuscar();
+    }
+
+    @Then("valido que pesquisa foi realizada com sucesso")
+    public void validoQuePesquisaFoiRealizadaComSucesso() throws Exception {
+        page.validarPesquisaRealizadaComSucesso();
     }
 
     @After

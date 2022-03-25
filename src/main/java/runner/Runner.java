@@ -11,7 +11,7 @@ import java.io.File;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"util.GetStep"},
+        plugin = {"util.GetStep"}, //"pretty", "html:cucumber/report.html"
         features = {"features"},
         monochrome = true,
         glue = {"steps"},
